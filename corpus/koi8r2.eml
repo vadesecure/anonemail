@@ -1,19 +1,19 @@
-Received: from customer-PUE-226-43.megared.net.mx (unknown [189.193.226.43])
-	by vrcivflmailfront01.gotociv.net (Postfix) with ESMTP id 903C21C0293BC;
+Received: from customer-PUE-226-43.megared.net.mx (unknown [255.255.255.255])
+	by mailfront (Postfix) with ESMTP id 903C21C0293BC;
 	Wed, 12 Nov 2014 20:10:08 +0100 (CET)
 Content-Type: text/html; charset="koi8-r"
 Message-Id: <20141112131025.H5PTX73OG464WC99@SQU.list.ru>
 Date: Wed, 12 Nov 2014 13:10:25 -0600
-To: <be733daf0004417a@antispam.fr>,
-	<be736bc40004417d@antispam.fr>,
-	<be73a5a000044180@antispam.fr>,
-	<be74298600044188@antispam.fr>,
-	<be744b2700044189@antispam.fr>,
-	<be74699c0004418b@antispam.fr>,
-	<be75056f00044196@antispam.fr>,
-	<be751bd500044197@antispam.fr>,
-	<be763e0e000441a0@antispam.fr>
-Cc: <ca14051a00051b2c@antispam.fr>
+To: <be733daf0004417a@phonydomain.fr>,
+	<be736bc40004417d@phonydomain.fr>,
+	<be73a5a000044180@phonydomain.fr>,
+	<be74298600044188@phonydomain.fr>,
+	<be744b2700044189@phonydomain.fr>,
+	<be74699c0004418b@phonydomain.fr>,
+	<be75056f00044196@phonydomain.fr>,
+	<be751bd500044197@phonydomain.fr>,
+	<be763e0e000441a0@phonydomain.fr>
+Cc: <ca14051a00051b2c@phonydomain.fr>
 From: =?koi8-r?B?4cfFztTT1NfPINLFy8zBzdk=?= <leer25@yahoo.com>
 Subject: =?koi8-r?B?88zV1sLBINLB2s3F3cXOydEg0sXLzMHN2Q==?=
 X-Mailer: vBulletin Mail via PHP
