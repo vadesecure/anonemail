@@ -1,0 +1,590 @@
+Received: from PIPE (localhost [127.0.0.1])
+	by vrcivflmailfront01.gotociv.net (Postfix) with SMTP id 400321846C753
+	for <virusbtn-spam-low@mailtroc.com>; Sun,  9 Nov 2014 22:34:26 +0100 (CET)
+X-Return-Path: <discusion-bounces@canaima.softwarelibre.gob.ve>
+Received: from vrsrvvbtn01p.vaderetro.local (unknown [217.74.103.254])
+	by vrcivflmailfront01.gotociv.net (Postfix) with ESMTP id 1BA2E1846C3F7
+	for <virusbtn-spam-low@mailtroc.com>; Sun,  9 Nov 2014 22:34:26 +0100 (CET)
+Received: from mx.vbspamtest.com (mx.vbspamtest.com [81.136.243.94])
+	by vrsrvvbtn01p.vaderetro.local (mailcube) with ESMTP id 704B21A7349
+	for <info@vbspamtest.com>; Sun,  9 Nov 2014 22:34:25 +0100 (CET)
+Received: from cnti12.canaima.softwarelibre.gob.ve (HELO canaima.softwarelibre.gob.ve [190.9.129.40])
+    by mx.vbspamtest.com (qpsmtpd/0.81) with ESMTP id 14155688435z2nzb4xny.130.QtsxzE; Sun, 09 Nov 2014 21:34:05 +0000
+Received: from cnti13.canaima.softwarelibre.gob.ve (localhost [127.0.0.1])
+	by canaima.softwarelibre.gob.ve (8.14.3/8.14.3/Debian-5+lenny1) with ESMTP id sA9LXuK9010185;
+	Sun, 9 Nov 2014 17:03:59 -0430
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by canaima.softwarelibre.gob.ve (8.14.3/8.14.3/Debian-5+lenny1) with
+	ESMTP id sA9LXoxS010182 for <discusion@canaima.softwarelibre.gob.ve>;
+	Sun, 9 Nov 2014 17:03:51 -0430
+Received: by mail-qc0-f173.google.com with SMTP id x3so4898177qcv.18
+	for <discusion@canaima.softwarelibre.gob.ve>;
+	Sun, 09 Nov 2014 13:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=1djBG1G8PlCblFHIaaZfPeTbGKWOTpjJNAw4Q1Gfy8M=;
+	b=DFAkTpH5bptw9mNaXzCM+fSpMedyk6c0WxtAKosgTANecxIChma/frYm1qEHKMYGSU
+	y61p7p9RIdGYtI2ke77C1CVtEpd9qAqOg+G4KYEg0+fidrCsl5sKUcHJmjqAwbkXk4Pv
+	9YVE3LPUQq++QmAjUQoLpT8FOgSPOG74DywmXIu8DfrHAh639G14ZMfwIZxnurHqu9XY
+	PQ12XoVX6bUbfQchmY6N7Y5Wd+/14xIsSRCl6C/WuJx+drRr8j8xu0aZteOeDMS8WBaT
+	UDfrdiWztisDm/B5Y28z31Ec3vN7yeEFW80vYmXwDrajeBw+WM+ApVS/VxY9Ns24wZRw
+	CCrg==
+MIME-Version: 1.0
+X-Received: by 10.229.53.133 with SMTP id m5mr7858748qcg.28.1415568437499;
+	Sun, 09 Nov 2014 13:27:17 -0800 (PST)
+Received: by 10.140.109.202 with HTTP; Sun, 9 Nov 2014 13:27:17 -0800 (PST)
+Received: by 10.140.109.202 with HTTP; Sun, 9 Nov 2014 13:27:17 -0800 (PST)
+In-Reply-To: <CAA0Z0Yzg5O2XLXvuOmgGbrXztqLfB0eysrbAWYsqE=03x_bBXw@mail.gmail.com>
+References: <CA+heX6Yp8VnO=84zUVZKUGuzZdmsU-_U6OvEe9c6w0GmZ4Yx0Q@mail.gmail.com>
+	<CAPSp06ci1A+eDvBXSk0SWkqfBZb53+J9fJm3KSb+KWC46YncEw@mail.gmail.com>
+	<CA+=-ZvdvsfvYNBQvZRWHjDYaXFqkxmqLG+jMGJqdwFRZBOVDkw@mail.gmail.com>
+	<545E4847.8030101@gmail.com>
+	<BLU436-SMTP260B9299BA056DF9F77EAAB8B830@phx.gbl>
+	<CAH1xFYQr6WNXax2qJK5vYDwW9Rn8-ZJ1cyRhyBneHwzsrVFC6A@mail.gmail.com>
+	<CAA0Z0Yzg5O2XLXvuOmgGbrXztqLfB0eysrbAWYsqE=03x_bBXw@mail.gmail.com>
+Date: Sun, 9 Nov 2014 16:57:17 -0430
+Message-ID: <CAKVF_haB-+5GwPpFB7WtQeLJAV2sTt4Ww1WvLTPe_K-xokHaTA@mail.gmail.com>
+From: jose leonel subero gamarra <arawako@gmail.com>
+To: =?UTF-8?Q?Lista_para_informaci=C3=B3n_general_sobre_la_Metadistribuci=C3=B3?=
+	=?UTF-8?Q?n_Canaima?= <discusion@canaima.softwarelibre.gob.ve>
+Subject: Re: [Discusion]
+	=?utf-8?q?Se_busca_camarada_Administrador_de_Redes_y_?=
+	=?utf-8?q?Sistemas_para_trabajar_en_M=C3=A9rida?=
+X-BeenThere: discusion@canaima.softwarelibre.gob.ve
+X-Mailman-Version: 2.1.11
+Precedence: list
+Reply-To: =?iso-8859-1?q?Lista_de_discusi=F3n_de_temas_generales_del_proy?=
+	=?iso-8859-1?q?ecto_canaima?= <discusion@canaima.softwarelibre.gob.ve>
+List-Id: =?iso-8859-1?q?Lista_de_discusi=F3n_de_temas_generales_del_proyecto_canaima?=
+	<discusion.canaima.softwarelibre.gob.ve>
+List-Unsubscribe: <http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/options/discusion>,
+	<mailto:discusion-request@canaima.softwarelibre.gob.ve?subject=unsubscribe>
+List-Archive: <http://listas.canaima.softwarelibre.gob.ve/pipermail/discusion>
+List-Post: <mailto:discusion@canaima.softwarelibre.gob.ve>
+List-Help: <mailto:discusion-request@canaima.softwarelibre.gob.ve?subject=help>
+List-Subscribe: <http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/discusion>,
+	<mailto:discusion-request@canaima.softwarelibre.gob.ve?subject=subscribe>
+Content-Type: multipart/mixed; boundary="===============0683581608=="
+Sender: discusion-bounces@canaima.softwarelibre.gob.ve
+Errors-To: discusion-bounces@canaima.softwarelibre.gob.ve
+X-MC2-CHECKED-RECIPIENT: info@vbspamtest.com
+X-MC2-CHECKED-ALIAS-OF: 
+X-DRWEB-SCAN: ok
+X-VRSPAM-SCORE: 0
+X-VRSPAM-STATE: legit
+X-VRSPAM-CAUSE: gggruggvucftvghtrhhoucdtuddrfeejhedriedtgdekjecutefuodetggdotefrucfrrhhofhhilhgvmecuggftfghnshhusghstghrihgsvgdpggeuuffrtefonecuuegrihhlohhuthemuceftddtnecunecujfgurhepjghffffkhffvufhprhejjfegudeftdgtshgvsehmtderredttdejnecuhfhrohhmpehjohhsvgculhgvohhnvghluchsuhgsvghrohcughgrmhgrrhhrrgcuoegrrhgrfigrkhhosehgmhgrihhlrdgtohhmqeenucffohhmrghinhepfihorhguphhrvghsshdrtghomhdpghhruhhpohhlrggsgedvrdgtohhmrdhvvgdplhhisghrvghofhhfihgtvgdqvhgvrdhorhhgpdhsohhfthifrghrvghlihgsrhgvrdhgohgsrdhvvgdphihouhhtuhdrsggvpdhgihhthhhusgdrtghomhdpsgholhhivhgrrhhluhhgrdhorhhgrdhvvgdpuhgsuhhnthhurdgtohhmpdhgihhmphdqvhgvrdgtohhmpdhlrghunhgthhhprggurdhnvght
+
+--===============0683581608==
+Content-Type: multipart/alternative; boundary=001a1133da32df5e0d050773b554
+
+--001a1133da32df5e0d050773b554
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+http://youtu.be/0Qori-YXUqA
+El 09/11/2014 13:21, "Nazaret L=C3=B3pez" <abr1l.nazaret@gmail.com> escribi=
+=C3=B3:
+
+> Dejen el drama!, as=C3=AD cometi=C3=B3 un error en formato solo p=C3=A1se=
+nle un link
+> explicando las reglas  en cuanto al trabajo, ser o no "camarada" no deber=
+=C3=ADa
+> ser un problema y de serlo entonces rechaza los que no te convengan y pun=
+to
+> el resto no es una lista para ese tipo de problemas ideol=C3=B3gicos....
+> .buenas tardes
+>
+> Abr1l
+> El 09/11/2014 12:46, "Alexis Arnal" <aarnal@gmail.com> escribi=C3=B3:
+>
+>> Es ese tu caso???
+>> El 09/11/2014 12:14, "Luis Alejandro Mart=C3=ADnez Faneyth" <
+>> luis@huntingbears.com.ve> escribi=C3=B3:
+>>
+>>> Pues existe mucha gente de oposici=C3=B3n que escoge enlistarse en la A=
+PN
+>>> voluntariamente (donde se le permite), conscientes de la divergencia
+>>> ideol=C3=B3gica, y a=C3=BAn as=C3=AD est=C3=A1n dispuestos a dar lo mej=
+or de s=C3=AD en los
+>>> aspectos sustantivos del trabajo.
+>>>
+>>> Un aviso as=C3=AD lo que me invita a pensar es que qui=C3=A9n est=C3=A1=
+ buscando
+>>> "camaradas" no tiene mucha paciencia para que lo contradigan, o no sabe
+>>> como rebatir argumentos. Y seg=C3=BAn lo que he le=C3=ADdo, la revoluci=
+=C3=B3n no se
+>>> puede hacer sin revisiones y debates profundos.
+>>>
+>>> Alguien est=C3=A1 miccionando fuera de la periferia del contenedor.
+>>>
+>>> Saludos.
+>>>
+>>> On 08/11/14 12:13, lgcg00@gmail.com wrote:
+>>> > Si debe ser camarada!!. Es contradictorio que no est=C3=A9s ideol=C3=
+=B3gicamente
+>>> > alineado con un proceso y trabajes en funci=C3=B3n de construir ese p=
+roceso
+>>> > que no entiendes, que no apoyas o que no amas.
+>>> >
+>>> > Saludos a todos lo que no son camaradas y un fuerte abrazo para los q=
+ue
+>>> > s=C3=AD lo son.
+>>> >
+>>> > El 08/11/2014 11:56 a.m., Juan Vargas A.K.A RootWeiller escribi=C3=B3=
+:
+>>> >> Viejo, la respuesta la tienes tu mismo en tu firma " La universidad =
+es
+>>> >> el refugio donde reprimen las ideas. Prohibido pensar, solo a repeti=
+r
+>>> >> lo establecido sin pataleo." Solo que c=C3=A1mbiale "La universidad"=
+, por
+>>> >> "El gobierno" #TrollModeOn
+>>> >>
+>>> >> El 6 de noviembre de 2014, 21:18, alfieri morillo
+>>> >> <alfierimorillo@gmail.com <mailto:alfierimorillo@gmail.com>>
+>>> escribi=C3=B3:
+>>> >>
+>>> >>     Si no es camarada importa???
+>>> >>
+>>> >>     https://github.com/cyberthrone/ <http://github.com/cyberthrone/>
+>>> >>     https://launchpad.net/~alfierimorillo
+>>> >>     <https://launchpad.net/%7Ealfierimorillo>
+>>> >>       Ubuntu User number is # 35087
+>>> >>       Public profile linux for user #555597
+>>> >>     alfieri.morillo@libreoffice-ve.net
+>>> >>     <mailto:alfieri.morillo@libreoffice-ve.net>
+>>> >>     Web Master libreoffice-ve <http://libreoffice-ve.org/> y Gimp-ve
+>>> >>     <http://gimp-ve.com/>
+>>> >>     https://wiki.ubuntu.com/Alfierimorillo
+>>> >>     <https://wiki.ubuntu.com/Alfieri>Morillo
+>>> >>      La universidad es el refugio donde reprimen las ideas. Prohibid=
+o
+>>> >>     pensar, solo a repetir lo establecido sin pataleo.
+>>> >>
+>>> >>     El 6 de noviembre de 2014, 9:31, Alejandro V=C3=A1zquez
+>>> >>     <alejo.vazquez@gmail.com <mailto:alejo.vazquez@gmail.com>>
+>>> escribi=C3=B3:
+>>> >>
+>>> >>         Saludos:
+>>> >>
+>>> >>         Andamos en busca de *camarada* *proactivo*, con un buen perf=
+il
+>>> >>         en el =C3=A1rea de software libre para, administraci=C3=B3n =
+y
+>>> >>         mantenimiento de red, administraci=C3=B3n de servidores, mig=
+raci=C3=B3n
+>>> >>         a software libre, etc.
+>>> >>
+>>> >>         Importante que sea proactivo, que genere soluciones y no
+>>> >>         inconvenientes, que sea responsable, que planifique y cumpla
+>>> >>         sus metas dentro de los lapsos establecidos.
+>>> >>
+>>> >>         Se ofrece buena remuneraci=C3=B3n + Cesta Ticket, todos los
+>>> >>         beneficios de ley, inmejorable ambiente de trabajo, en la zo=
+na
+>>> >>         norte de M=C3=A9rida (Sector El Valle), empresa tur=C3=ADsti=
+ca.
+>>> >>
+>>> >>         Interesados enviar curriculum a alejo.vazquez@gmail.com
+>>> >>         <mailto:alejo.vazquez@gmail.com>
+>>> >>
+>>> >>         --         *"Qui=C3=A9n dedica su tiempo a mejorarse a si mi=
+smo,
+>>> >>         no tiene tiempo para criticar a los dem=C3=A1s".
+>>> >>         *
+>>> >>         *Madre Teresa de Calcuta.
+>>> >>         *
+>>> >>         -----------
+>>> >>         Jos=C3=A9 Alejandro V=C3=A1zquez F.
+>>> >>         M=C3=A9rida-Venezuela
+>>> >>         Fingerprint: D8C6 4AEA E462 8E18 1778  D70E F5BA 0CF6 14F7
+>>> 98EC
+>>> >>
+>>> >>
+>>> >>         _______________________________________________
+>>> >>         Discusion mailing list
+>>> >>         Discusion@canaima.softwarelibre.gob.ve
+>>> >>         <mailto:Discusion@canaima.softwarelibre.gob.ve>
+>>> >>
+>>> >>
+>>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/dis=
+cusion
+>>> >>
+>>> >>
+>>> >>
+>>> >>
+>>> >>     _______________________________________________
+>>> >>     Discusion mailing list
+>>> >>     Discusion@canaima.softwarelibre.gob.ve
+>>> >>     <mailto:Discusion@canaima.softwarelibre.gob.ve>
+>>> >>
+>>> >>
+>>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/dis=
+cusion
+>>> >>
+>>> >>
+>>> >>
+>>> >>
+>>> >>
+>>> >> --
+>>> >> Juan Vargas
+>>> >> (58) 426 - 2795326
+>>> >> @RootWeiller
+>>> >> @Lab42Software
+>>> >>
+>>> >> Emprendimientos
+>>> >> www.grupolab42.com.ve <http://www.grupolab42.com.ve>
+>>> >>
+>>> >> LUG's
+>>> >> http://www.bolivarlug.org.ve
+>>> >>
+>>> >> Blog
+>>> >> http://sinsitioweb.wordpress.com
+>>> >> Linux User 461138
+>>> >>
+>>> >> "Si quieres que los dem=C3=A1s te sigan, no tienes m=C3=A1s que ir d=
+elante de
+>>> >> ellos" Alfonso Alc=C3=A1ntara
+>>> >>
+>>> >>
+>>> >> _______________________________________________
+>>> >> Discusion mailing list
+>>> >> Discusion@canaima.softwarelibre.gob.ve
+>>> >>
+>>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/dis=
+cusion
+>>> >>
+>>> >
+>>> >
+>>> >
+>>> >
+>>> > _______________________________________________
+>>> > Discusion mailing list
+>>> > Discusion@canaima.softwarelibre.gob.ve
+>>> >
+>>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/dis=
+cusion
+>>> >
+>>>
+>>> --
+>>> Luis Alejandro Mart=C3=ADnez Faneyth
+>>> Blog: http://huntingbears.com.ve
+>>> Github: http://github.com/LuisAlejandro
+>>> Twitter: http://twitter.com/LuisAlejandro
+>>>
+>>> CODE IS POETRY
+>>> _______________________________________________
+>>> Discusion mailing list
+>>> Discusion@canaima.softwarelibre.gob.ve
+>>>
+>>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/dis=
+cusion
+>>>
+>>
+>> _______________________________________________
+>> Discusion mailing list
+>> Discusion@canaima.softwarelibre.gob.ve
+>>
+>> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/disc=
+usion
+>>
+>>
+> _______________________________________________
+> Discusion mailing list
+> Discusion@canaima.softwarelibre.gob.ve
+>
+> http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/discu=
+sion
+>
+>
+
+--001a1133da32df5e0d050773b554
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr"><a href=3D"http://youtu.be/0Qori-YXUqA">http://youtu.be/0Qor=
+i-YXUqA</a></p>
+<div class=3D"gmail_quote">El 09/11/2014 13:21, &quot;Nazaret L=C3=B3pez&qu=
+ot; &lt;<a href=3D"mailto:abr1l.nazaret@gmail.com">abr1l.nazaret@gmail.com<=
+/a>&gt; escribi=C3=B3:<br type=3D"attribution"><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
+x"><p>Dejen el drama!, as=C3=AD cometi=C3=B3 un error en formato solo p=C3=
+=A1senle un link explicando las reglas=C2=A0 en cuanto al trabajo, ser o no=
+ &quot;camarada&quot; no deber=C3=ADa ser un problema y de serlo entonces r=
+echaza los que no te convengan y punto el resto no es una lista para ese ti=
+po de problemas ideol=C3=B3gicos....<br>
+buenas tardes</p>
+<p>Abr1l</p>
+<div class=3D"gmail_quote">El 09/11/2014 12:46, &quot;Alexis Arnal&quot; &l=
+t;<a href=3D"mailto:aarnal@gmail.com" target=3D"_blank">aarnal@gmail.com</a=
+>&gt; escribi=C3=B3:<br type=3D"attribution"><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
+><p>Es ese tu caso??? </p>
+<div class=3D"gmail_quote">El 09/11/2014 12:14, &quot;Luis Alejandro Mart=
+=C3=ADnez Faneyth&quot; &lt;<a href=3D"mailto:luis@huntingbears.com.ve" tar=
+get=3D"_blank">luis@huntingbears.com.ve</a>&gt; escribi=C3=B3:<br type=3D"a=
+ttribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">Pues existe mucha gente de oposi=
+ci=C3=B3n que escoge enlistarse en la APN<br>
+voluntariamente (donde se le permite), conscientes de la divergencia<br>
+ideol=C3=B3gica, y a=C3=BAn as=C3=AD est=C3=A1n dispuestos a dar lo mejor d=
+e s=C3=AD en los<br>
+aspectos sustantivos del trabajo.<br>
+<br>
+Un aviso as=C3=AD lo que me invita a pensar es que qui=C3=A9n est=C3=A1 bus=
+cando<br>
+&quot;camaradas&quot; no tiene mucha paciencia para que lo contradigan, o n=
+o sabe<br>
+como rebatir argumentos. Y seg=C3=BAn lo que he le=C3=ADdo, la revoluci=C3=
+=B3n no se<br>
+puede hacer sin revisiones y debates profundos.<br>
+<br>
+Alguien est=C3=A1 miccionando fuera de la periferia del contenedor.<br>
+<br>
+Saludos.<br>
+<br>
+On 08/11/14 12:13, <a href=3D"mailto:lgcg00@gmail.com" target=3D"_blank">lg=
+cg00@gmail.com</a> wrote:<br>
+&gt; Si debe ser camarada!!. Es contradictorio que no est=C3=A9s ideol=C3=
+=B3gicamente<br>
+&gt; alineado con un proceso y trabajes en funci=C3=B3n de construir ese pr=
+oceso<br>
+&gt; que no entiendes, que no apoyas o que no amas.<br>
+&gt;<br>
+&gt; Saludos a todos lo que no son camaradas y un fuerte abrazo para los qu=
+e<br>
+&gt; s=C3=AD lo son.<br>
+&gt;<br>
+&gt; El 08/11/2014 11:56 a.m., Juan Vargas A.K.A RootWeiller escribi=C3=B3:=
+<br>
+&gt;&gt; Viejo, la respuesta la tienes tu mismo en tu firma &quot; La unive=
+rsidad es<br>
+&gt;&gt; el refugio donde reprimen las ideas. Prohibido pensar, solo a repe=
+tir<br>
+&gt;&gt; lo establecido sin pataleo.&quot; Solo que c=C3=A1mbiale &quot;La =
+universidad&quot;, por<br>
+&gt;&gt; &quot;El gobierno&quot; #TrollModeOn<br>
+&gt;&gt;<br>
+&gt;&gt; El 6 de noviembre de 2014, 21:18, alfieri morillo<br>
+&gt;&gt; &lt;<a href=3D"mailto:alfierimorillo@gmail.com" target=3D"_blank">=
+alfierimorillo@gmail.com</a> &lt;mailto:<a href=3D"mailto:alfierimorillo@gm=
+ail.com" target=3D"_blank">alfierimorillo@gmail.com</a>&gt;&gt; escribi=C3=
+=B3:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0Si no es camarada importa???<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://github.com/cyberthrone/" tar=
+get=3D"_blank">https://github.com/cyberthrone/</a> &lt;<a href=3D"http://gi=
+thub.com/cyberthrone/" target=3D"_blank">http://github.com/cyberthrone/</a>=
+&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://launchpad.net/~alfierimorill=
+o" target=3D"_blank">https://launchpad.net/~alfierimorillo</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://launchpad.net/%7Ealfieri=
+morillo" target=3D"_blank">https://launchpad.net/%7Ealfierimorillo</a>&gt;<=
+br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Ubuntu User number is # 35087<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Public profile linux for user #555597<br=
+>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:alfieri.morillo@libreoffice-v=
+e.net" target=3D"_blank">alfieri.morillo@libreoffice-ve.net</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:alfieri.morillo@li=
+breoffice-ve.net" target=3D"_blank">alfieri.morillo@libreoffice-ve.net</a>&=
+gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0Web Master libreoffice-ve &lt;<a href=3D"http:/=
+/libreoffice-ve.org/" target=3D"_blank">http://libreoffice-ve.org/</a>&gt; =
+y Gimp-ve<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"http://gimp-ve.com/" target=3D"_=
+blank">http://gimp-ve.com/</a>&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://wiki.ubuntu.com/Alfierimoril=
+lo" target=3D"_blank">https://wiki.ubuntu.com/Alfierimorillo</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://wiki.ubuntu.com/Alfieri"=
+ target=3D"_blank">https://wiki.ubuntu.com/Alfieri</a>&gt;Morillo<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 La universidad es el refugio donde reprimen la=
+s ideas. Prohibido<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0pensar, solo a repetir lo establecido sin patal=
+eo.<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0El 6 de noviembre de 2014, 9:31, Alejandro V=C3=
+=A1zquez<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"mailto:alejo.vazquez@gmail.com" =
+target=3D"_blank">alejo.vazquez@gmail.com</a> &lt;mailto:<a href=3D"mailto:=
+alejo.vazquez@gmail.com" target=3D"_blank">alejo.vazquez@gmail.com</a>&gt;&=
+gt; escribi=C3=B3:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Saludos:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Andamos en busca de *camarada* *p=
+roactivo*, con un buen perfil<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0en el =C3=A1rea de software libre=
+ para, administraci=C3=B3n y<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mantenimiento de red, administrac=
+i=C3=B3n de servidores, migraci=C3=B3n<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0a software libre, etc.<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Importante que sea proactivo, que=
+ genere soluciones y no<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0inconvenientes, que sea responsab=
+le, que planifique y cumpla<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sus metas dentro de los lapsos es=
+tablecidos.<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Se ofrece buena remuneraci=C3=B3n=
+ + Cesta Ticket, todos los<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0beneficios de ley, inmejorable am=
+biente de trabajo, en la zona<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0norte de M=C3=A9rida (Sector El V=
+alle), empresa tur=C3=ADstica.<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Interesados enviar curriculum a <=
+a href=3D"mailto:alejo.vazquez@gmail.com" target=3D"_blank">alejo.vazquez@g=
+mail.com</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:alej=
+o.vazquez@gmail.com" target=3D"_blank">alejo.vazquez@gmail.com</a>&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0*&quot;Qui=C3=A9n dedica su tiempo a mejorarse a si mismo,<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0no tiene tiempo para criticar a l=
+os dem=C3=A1s&quot;.<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*Madre Teresa de Calcuta.<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-----------<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Jos=C3=A9 Alejandro V=C3=A1zquez =
+F.<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0M=C3=A9rida-Venezuela<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Fingerprint: D8C6 4AEA E462 8E18 =
+1778=C2=A0 D70E F5BA 0CF6 14F7 98EC<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_________________________________=
+______________<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Discusion mailing list<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:Discusion@canai=
+ma.softwarelibre.gob.ve" target=3D"_blank">Discusion@canaima.softwarelibre.=
+gob.ve</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:Disc=
+usion@canaima.softwarelibre.gob.ve" target=3D"_blank">Discusion@canaima.sof=
+twarelibre.gob.ve</a>&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mail=
+man/listinfo/discusion" target=3D"_blank">http://listas.canaima.softwarelib=
+re.gob.ve/cgi-bin/mailman/listinfo/discusion</a><br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________=
+<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0Discusion mailing list<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:Discusion@canaima.softwarelib=
+re.gob.ve" target=3D"_blank">Discusion@canaima.softwarelibre.gob.ve</a><br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:Discusion@canaima.=
+softwarelibre.gob.ve" target=3D"_blank">Discusion@canaima.softwarelibre.gob=
+ve</a>&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mail=
+man/listinfo/discusion" target=3D"_blank">http://listas.canaima.softwarelib=
+re.gob.ve/cgi-bin/mailman/listinfo/discusion</a><br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; --<br>
+&gt;&gt; Juan Vargas<br>
+&gt;&gt; <a href=3D"tel:%2858%29%20426%20-%202795326" value=3D"+58426279532=
+6" target=3D"_blank">(58) 426 - 2795326</a><br>
+&gt;&gt; @RootWeiller<br>
+&gt;&gt; @Lab42Software<br>
+&gt;&gt;<br>
+&gt;&gt; Emprendimientos<br>
+&gt;&gt; <a href=3D"http://www.grupolab42.com.ve" target=3D"_blank">www.gru=
+polab42.com.ve</a> &lt;<a href=3D"http://www.grupolab42.com.ve" target=3D"_=
+blank">http://www.grupolab42.com.ve</a>&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; LUG&#39;s<br>
+&gt;&gt; <a href=3D"http://www.bolivarlug.org.ve" target=3D"_blank">http://=
+www.bolivarlug.org.ve</a><br>
+&gt;&gt;<br>
+&gt;&gt; Blog<br>
+&gt;&gt; <a href=3D"http://sinsitioweb.wordpress.com" target=3D"_blank">htt=
+p://sinsitioweb.wordpress.com</a><br>
+&gt;&gt; Linux User 461138<br>
+&gt;&gt;<br>
+&gt;&gt; &quot;Si quieres que los dem=C3=A1s te sigan, no tienes m=C3=A1s q=
+ue ir delante de<br>
+&gt;&gt; ellos&quot; Alfonso Alc=C3=A1ntara<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; Discusion mailing list<br>
+&gt;&gt; <a href=3D"mailto:Discusion@canaima.softwarelibre.gob.ve" target=
+=3D"_blank">Discusion@canaima.softwarelibre.gob.ve</a><br>
+&gt;&gt; <a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mail=
+man/listinfo/discusion" target=3D"_blank">http://listas.canaima.softwarelib=
+re.gob.ve/cgi-bin/mailman/listinfo/discusion</a><br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; Discusion mailing list<br>
+&gt; <a href=3D"mailto:Discusion@canaima.softwarelibre.gob.ve" target=3D"_b=
+lank">Discusion@canaima.softwarelibre.gob.ve</a><br>
+&gt; <a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/=
+listinfo/discusion" target=3D"_blank">http://listas.canaima.softwarelibre.g=
+ob.ve/cgi-bin/mailman/listinfo/discusion</a><br>
+&gt;<br>
+<br>
+--<br>
+Luis Alejandro Mart=C3=ADnez Faneyth<br>
+Blog: <a href=3D"http://huntingbears.com.ve" target=3D"_blank">http://hunti=
+ngbears.com.ve</a><br>
+Github: <a href=3D"http://github.com/LuisAlejandro" target=3D"_blank">http:=
+//github.com/LuisAlejandro</a><br>
+Twitter: <a href=3D"http://twitter.com/LuisAlejandro" target=3D"_blank">htt=
+p://twitter.com/LuisAlejandro</a><br>
+<br>
+CODE IS POETRY<br>
+_______________________________________________<br>
+Discusion mailing list<br>
+<a href=3D"mailto:Discusion@canaima.softwarelibre.gob.ve" target=3D"_blank"=
+>Discusion@canaima.softwarelibre.gob.ve</a><br>
+<a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listi=
+nfo/discusion" target=3D"_blank">http://listas.canaima.softwarelibre.gob.ve=
+/cgi-bin/mailman/listinfo/discusion</a><br>
+</blockquote></div>
+<br>_______________________________________________<br>
+Discusion mailing list<br>
+<a href=3D"mailto:Discusion@canaima.softwarelibre.gob.ve" target=3D"_blank"=
+>Discusion@canaima.softwarelibre.gob.ve</a><br>
+<a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listi=
+nfo/discusion" target=3D"_blank">http://listas.canaima.softwarelibre.gob.ve=
+/cgi-bin/mailman/listinfo/discusion</a><br>
+<br></blockquote></div>
+<br>_______________________________________________<br>
+Discusion mailing list<br>
+<a href=3D"mailto:Discusion@canaima.softwarelibre.gob.ve">Discusion@canaima=
+softwarelibre.gob.ve</a><br>
+<a href=3D"http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listi=
+nfo/discusion" target=3D"_blank">http://listas.canaima.softwarelibre.gob.ve=
+/cgi-bin/mailman/listinfo/discusion</a><br>
+<br></blockquote></div>
+
+--001a1133da32df5e0d050773b554--
+
+--===============0683581608==
+Content-Type: text/plain; charset="iso-8859-1"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+_______________________________________________
+Discusion mailing list
+Discusion@canaima.softwarelibre.gob.ve
+http://listas.canaima.softwarelibre.gob.ve/cgi-bin/mailman/listinfo/discusi=
+on
+
+--===============0683581608==--
