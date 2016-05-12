@@ -46,8 +46,8 @@ $ ./anohp.py --help
 To send the anonymized version of an eml file from bonnie@clyde.com to tips@police.net
 
 ./anohp.py --from bonnie@clyde.com --to tips@police.net -i myfile.eml
-      """,  # mettre le contenu du fichier README.md
+      """,  
       install_requires=[
-        "BeautifulSoup"
+        "beautifulsoup4"
       ],
       )
