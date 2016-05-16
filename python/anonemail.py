@@ -173,6 +173,64 @@ def url_replace_html(html):
 		
 	return str(soup)
 
+def email_open(args):
+	""" Read the file descriptor and return a msg file """
+	p=email.parser.BytesFeedParser()
+	if args.stdin or args.infile is None:
+		input = io.BufferedReader(sys.stdin.buffer)
+	else:
+		input = open(args.infile, 'rb')
+	p.feed(input.read())
+	msg = p.close()
+	input.close()
+
+	# Check for invalid (0 bytes) message
+	if len(msg) == 0:
+		error(msg, "Invalid Message")
+	else:
+		return msg
+
+def anon_part(part, elmts):
+
+	charset = part.get_content_charset()
+
+	# If there is a charset, we decode the content
+	if charset is None:
+		payload = part.get_payload()
+		new_load = replace(payload, elmts)[0]
+	else:
+		payload = part.get_payload(decode=True).decode(charset)
+		new_load = replace(payload, elmts)[0]
+
+	# URL anonymization
+	if part.get_content_subtype() == 'plain':
+		new_load = url_replace(new_load)
+	elif part.get_content_subtype() == 'html':
+		new_load = url_replace_html(new_load)
+	
+	# Encoding back in the previously used encoding (if any)
+	cdc_load = encode(new_load, charset, part.get('content-transfer-encoding') )
+	if cdc_load == "!ERR!":
+		error(msg, "Encoding error")
+	else:
+		part.set_payload(cdc_load)
+	return part
+
+def ano_hdr(msg, coddhdr, elmts):
+	anohdr = []
+	for b, charset in decode_header(msg.get(coddhdr)):
+		
+		if charset != None:
+			dcd_hdr = b.decode(charset)
+			(dcd_hdr, count) = replace(dcd_hdr, elmts)
+			anohdr.append( (dcd_hdr , charset) )
+		elif isinstance(b,str):
+			anohdr.append( (b, charset) )
+		else:
+			anohdr.append( (b.decode(), charset) )
+
+	return anohdr
+
 def main():
 	global args
 	
@@ -190,20 +248,8 @@ def main():
 	
 	args = parser.parse_args()
 
-	# Read email
-	p=email.parser.BytesFeedParser()
-	if args.stdin or args.infile is None:
-		input = io.BufferedReader(sys.stdin.buffer)
-	else:
-		input = open(args.infile, 'rb')
-	p.feed(input.read())
-	msg = p.close()
-	input.close()
-	
-	# Check for invalid (0 bytes) message
-	if len(msg) == 0:
-		error(msg, "Invalid Message")
-	
+	msg = email_open(args)
+
 	# Grab recipient from To field
 	dest = get_dest(msg, args.orig_to)
 	if len(dest) == 0:
@@ -213,34 +259,15 @@ def main():
 	elmts = set()
 	for d in dest:
 		elmts.update(tokenize_to(d))
-		
 	elmts = sorted( elmts, key=str.__len__, reverse = True )
 	
 	# Main part - loop on every part of the email
 	for part in msg.walk():
 		if not part.is_multipart() and part.get_content_maintype() == 'text':
-			charset = part.get_content_charset()
-		
-		        # If there is a charset, we decode the content
-			if charset is None:
-				payload = part.get_payload()
-				new_load = replace(payload, elmts)[0]
-			else:
-				payload = part.get_payload(decode=True).decode(charset)
-				new_load = replace(payload, elmts)[0]
+			part = anon_part(part, elmts)
+		else:
+			part = part
 
-			# URL anonymization
-			if part.get_content_subtype() == 'plain':
-				new_load = url_replace(new_load)
-			elif part.get_content_subtype() == 'html':
-				new_load = url_replace_html(new_load)
-			
-			# Encoding back in the previously used encoding (if any)
-			cdc_load = encode(new_load, charset, part.get('content-transfer-encoding') )
-			if cdc_load == "!ERR!":
-				error(msg, "Encoding error")
-			else:
-				part.set_payload(cdc_load)
 	
 	# Looking for custom header to clean
 	for cstmhdr in CSTMHDR:
@@ -250,19 +277,8 @@ def main():
 	# Anonmyzation of encoded headers
 	for coddhdr in CODDHDR:
 		if coddhdr in msg.keys():
-			ano_hdr = []
-			for b, charset in decode_header(msg.get(coddhdr)):
-				
-				if charset != None:
-					dcd_hdr = b.decode(charset)
-					(dcd_hdr, count) = replace(dcd_hdr, elmts)
-					ano_hdr.append( (dcd_hdr , charset) )
-				elif isinstance(b,str):
-					ano_hdr.append( (b, charset) )
-				else:
-					ano_hdr.append( (b.decode(), charset) )
-
-			msg.replace_header( coddhdr, email.header.make_header(ano_hdr) )
+			anohdr = ano_hdr(msg, coddhdr, elmts)
+			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
 			
 	# If defined, clean DKIM fields
 	if args.no_dkim:
