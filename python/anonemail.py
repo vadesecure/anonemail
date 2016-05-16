@@ -231,9 +231,7 @@ def ano_hdr(msg, coddhdr, elmts):
 
 	return anohdr
 
-def main():
-	global args
-	
+def parse_args():
 	parser = argparse.ArgumentParser(description='')
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-', help="Read from standard input", dest='stdin', action='store_true')
@@ -246,8 +244,34 @@ def main():
 	parser.add_argument('--sample', dest='smpl_addr', help="Sampling address", default=SMPADDR)
 	parser.add_argument('--no-dkim', dest='no_dkim', help="Remove DKIM fields", action='store_true')
 	
-	args = parser.parse_args()
+	return parser.parse_args()
 
+def get_newmsg(msg):
+	# Concatenate the anonymized headers with anonymized body = BOUM ! anonymized email !
+	hdr_end = msg.as_string().find('\n\n')
+	if hdr_end == -1:
+		error(msg, "No neck")
+	else:
+		hdr = msg.as_string()[:hdr_end]
+		new_hdr = url_replace(hdr)
+		(new_hdr, count) = replace(new_hdr,elmts)
+		new_msg = new_hdr + msg.as_string()[hdr_end:]
+
+		
+	## Force reencoding to avoid issues during sending with Python SMTP Lib
+	if msg.get_content_charset() is not None:
+		new_msg = new_msg.encode(msg.get_content_charset(), errors='replace')
+	else:
+		for charset in msg.get_charsets():
+			if charset is not None:
+				new_msg = final.encode(charset, errors='replace')
+				break
+	return new_msg
+
+def main():
+	global args
+	
+	args = parse_args()
 	msg = email_open(args)
 
 	# Grab recipient from To field
@@ -285,25 +309,7 @@ def main():
 		del msg["DKIM-Signature"]
 		del msg["DomainKey-Signature"]
 	
-	# Concatenate the anonymized headers with anonymized body = BOUM ! anonymized email !
-	hdr_end = msg.as_string().find('\n\n')
-	if hdr_end == -1:
-		error(msg, "No neck")
-	else:
-		hdr = msg.as_string()[:hdr_end]
-		new_hdr = url_replace(hdr)
-		(new_hdr, count) = replace(new_hdr,elmts)
-		final = new_hdr + msg.as_string()[hdr_end:]
-
-		
-	## Force reencoding to avoid issues during sending with Python SMTP Lib
-	if msg.get_content_charset() is not None:
-		final = final.encode(msg.get_content_charset(), errors='replace')
-	else:
-		for charset in msg.get_charsets():
-			if charset is not None:
-				final = final.encode(charset, errors='replace')
-				break
+	new_msg = get_newmsg(msg, elmts)
 
 	s = smtplib.SMTP(args.srvsmtp)
 	
