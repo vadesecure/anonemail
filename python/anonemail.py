@@ -111,7 +111,7 @@ def decode_hdr(dest):
 	dcd_dest = []
 
 	for i in dest:
-		for (b, charset) in decode_header(i):
+		for b, charset in decode_header(i):
 			# Dirty hack - if bytes
 			if isinstance(b, bytes):
 				dcd_str = b.decode(charset) if charset != None else b.decode()
@@ -251,7 +251,7 @@ def main():
 	for coddhdr in CODDHDR:
 		if coddhdr in msg.keys():
 			ano_hdr = []
-			for ( b, charset) in decode_header(msg.get(coddhdr)):
+			for b, charset in decode_header(msg.get(coddhdr)):
 				
 				if charset != None:
 					dcd_hdr = b.decode(charset)
