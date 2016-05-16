@@ -19,6 +19,8 @@ ERRADDR = "oops@email.tld"
 SMPADDR = "sampling@email.tld"
 # Server to forward anonymized messages to
 SRVSMTP = "localhost"
+# Recipient Headers
+RCPTHDR = ( "To", "Cc", "Bcc", "Delivered-To" )
 # Custom headers to anonymize ( List Id…)
 CSTMHDR = ( "X-Mailer-RecptId", )
 # Headers to decode before tokenizing ( RFC 2822 )
@@ -83,26 +85,17 @@ def error(msg, error_msg):
 def get_dest(msg, orig_to):
 	""" Find the recipient(s) """
 	dest = []
+
+	# Find all recipients in the RCPTHDR fields
+	for hdr in RCPTHDR:
+		if msg.get(hdr) is not None and '@' in msg.get(hdr):
+			
+			if hdr in CODDHDR:
+				dcd_hdr = decode_hdr(msg.get_all(hdr))
+				dest.extend(dcd_hdr)
+			else:
+				dest.extend(msg.getall(hdr))
 	
-	# To
-	if msg.get('to') is not None and '@' in msg.get('to'):
-		dest.extend(msg.get_all('to'))
-
-	# Cc
-	if msg.get('cc') is not None and '@' in msg.get('cc'):
-		dest.extend(msg.get_all('cc'))
-
-	# Bcc
-	if msg.get('bcc') is not None and '@' in msg.get('bcc'):
-		dest.extend(msg.get_all('bcc'))
-
-	# Delivered-To
-	if msg.get('delivered-to') is not None and '@' in msg.get('delivered-to'):
-		dest.extend(msg.get_all('delivered-to'))
-
-	# If any recipient, try to decode them
-	if len(dest) != 0:
-		dest = decode_hdr(dest)
 
 	# If no To nor Cc, we look for recipient into the received
 	if orig_to is None:
