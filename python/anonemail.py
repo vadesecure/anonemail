@@ -8,7 +8,7 @@ from email.parser import BytesFeedParser
 from email.header import decode_header,Header
 
 # Separators for getting user "parts" as in name.surname@email.tld or name_surname@email.tld
-USERSEP = re.compile("[.\-_]")
+USERSEP = re.compile("[._-]")
 # Separators for multiple/list of emails
 # eg: in the To field
 TKENSEP = re.compile("[ ,;]")
@@ -25,7 +25,7 @@ CSTMHDR = ( "X-Mailer-RecptId", )
 CODDHDR = ( "To", "Cc", "Subject" ) 
 
 addr_rgx = re.compile("for ([^;]+);") # to clean received headers
-url_rgx = re.compile('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+url_rgx = re.compile("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
 
 def replace(text, elmts):
 	""" Find tokens in part and replace them """
@@ -34,11 +34,11 @@ def replace(text, elmts):
 		ins_elmt = re.compile(re.escape(elmt), re.IGNORECASE)
 		(text, c) = ins_elmt.subn( ano_x(elmt), text)
 		count = count + c
-	return (text, count)
+	return text, count
 
 def ano_x(str):
 	""" Replace a string by 'xxxx' """
-	return re.sub('\w', 'x', str)
+	return re.sub(r'\w', 'x', str)
 
 	
 def tokenize_to(to):
@@ -96,7 +96,11 @@ def get_dest(msg, orig_to):
 	if msg.get('bcc') is not None and '@' in msg.get('bcc'):
 		dest.extend(msg.get_all('bcc'))
 
-	# If To or Cc, decode them
+	# Delivered-To
+	if msg.get('delivered-to') is not None and '@' in msg.get('delivered-to'):
+		dest.extend(msg.get_all('delivered-to'))
+
+	# If any recipient, try to decode them
 	if len(dest) != 0:
 		dest = decode_hdr(dest)
 
