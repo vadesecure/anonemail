@@ -122,7 +122,7 @@ def decode_hdr(dest):
 			
 	return dcd_dest
 
-def encode(part, charset = "utf-8" , cte = None):
+def encode_part(part, charset = "utf-8" , cte = None):
 	""" Reencode part using Content-Transfer-Encoding information """
 	donothing = [ '7bit', '8bit', 'binary' ]
 	encoders = { "base64": base64.b64encode, \
@@ -191,7 +191,7 @@ def email_open(args):
 		return msg
 
 def anon_part(part, elmts):
-
+	""" Process part to anonymize """
 	charset = part.get_content_charset()
 
 	# If there is a charset, we decode the content
@@ -209,14 +209,15 @@ def anon_part(part, elmts):
 		new_load = url_replace_html(new_load)
 	
 	# Encoding back in the previously used encoding (if any)
-	cdc_load = encode(new_load, charset, part.get('content-transfer-encoding') )
+	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding') )
 	if cdc_load == "!ERR!":
 		error(msg, "Encoding error")
 	else:
 		part.set_payload(cdc_load)
 	return part
 
-def ano_hdr(msg, coddhdr, elmts):
+def ano_coddhdr(msg, coddhdr, elmts):
+	""" Anonymize internationalized headers """
 	anohdr = []
 	for b, charset in decode_header(msg.get(coddhdr)):
 		
@@ -232,6 +233,7 @@ def ano_hdr(msg, coddhdr, elmts):
 	return anohdr
 
 def parse_args():
+	""" Define every options for argument parsing """
 	parser = argparse.ArgumentParser(description='')
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-', help="Read from standard input", dest='stdin', action='store_true')
@@ -247,6 +249,7 @@ def parse_args():
 	return parser.parse_args()
 
 def get_newmsg(msg):
+	""" Build the new, anonymized messaged and encode it correctly """
 	# Concatenate the anonymized headers with anonymized body = BOUM ! anonymized email !
 	hdr_end = msg.as_string().find('\n\n')
 	if hdr_end == -1:
@@ -267,6 +270,26 @@ def get_newmsg(msg):
 				new_msg = final.encode(charset, errors='replace')
 				break
 	return new_msg
+
+def clean_hdr(msg_elmts):
+	""" Anonymize headers """
+	# Looking for custom header to clean
+	for cstmhdr in CSTMHDR:
+		if cstmhdr in msg.keys():
+			msg.replace_header(cstmhdr, ano_x( msg.get(cstmhdr)) )
+
+	# Anonmyzation of encoded headers
+	for coddhdr in CODDHDR:
+		if coddhdr in msg.keys():
+			anohdr = ano_hdr(msg, coddhdr, elmts)
+			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
+
+	# If defined, clean DKIM fields
+	if args.no_dkim:
+		del msg["DKIM-Signature"]
+		del msg["DomainKey-Signature"]
+	
+	return msg
 
 def main():
 	global args
@@ -292,23 +315,9 @@ def main():
 		else:
 			part = part
 
-	
-	# Looking for custom header to clean
-	for cstmhdr in CSTMHDR:
-		if cstmhdr in msg.keys():
-			msg.replace_header(cstmhdr, ano_x( msg.get(cstmhdr)) )
-			
-	# Anonmyzation of encoded headers
-	for coddhdr in CODDHDR:
-		if coddhdr in msg.keys():
-			anohdr = ano_hdr(msg, coddhdr, elmts)
-			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
-			
-	# If defined, clean DKIM fields
-	if args.no_dkim:
-		del msg["DKIM-Signature"]
-		del msg["DomainKey-Signature"]
-	
+	# Clean headers
+	msg = clean_hdr(msg, elmts)
+
 	new_msg = get_newmsg(msg, elmts)
 
 	s = smtplib.SMTP(args.srvsmtp)
