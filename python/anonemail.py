@@ -248,7 +248,7 @@ def parse_args():
 	
 	return parser.parse_args()
 
-def get_newmsg(msg):
+def get_newmsg(msg,elmts):
 	""" Build the new, anonymized messaged and encode it correctly """
 	# Concatenate the anonymized headers with anonymized body = BOUM ! anonymized email !
 	hdr_end = msg.as_string().find('\n\n')
@@ -267,11 +267,11 @@ def get_newmsg(msg):
 	else:
 		for charset in msg.get_charsets():
 			if charset is not None:
-				new_msg = final.encode(charset, errors='replace')
+				new_msg = new_msg.encode(charset, errors='replace')
 				break
 	return new_msg
 
-def clean_hdr(msg_elmts):
+def clean_hdr(msg, elmts):
 	""" Anonymize headers """
 	# Looking for custom header to clean
 	for cstmhdr in CSTMHDR:
@@ -281,7 +281,7 @@ def clean_hdr(msg_elmts):
 	# Anonmyzation of encoded headers
 	for coddhdr in CODDHDR:
 		if coddhdr in msg.keys():
-			anohdr = ano_hdr(msg, coddhdr, elmts)
+			anohdr = ano_coddhdr(msg, coddhdr, elmts)
 			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
 
 	# If defined, clean DKIM fields
@@ -324,10 +324,10 @@ def main():
 	
 	# Sampling part 
 	if random.randint(0,10) == 0:
-		s.sendmail(args.from_addr,args.smpl_addr,final)
+		s.sendmail(args.from_addr,args.smpl_addr,new_msg)
 
 	# Send final message 
-	s.sendmail(args.from_addr,args.to_addr,final)
+	s.sendmail(args.from_addr,args.to_addr,new_msg)
 
 	s.quit()
 	exit(0)
