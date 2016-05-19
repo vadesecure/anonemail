@@ -3,7 +3,7 @@
 
 import unittest, email, argparse
 from anonemail import replace, tokenize_to, clean_token, email_open
-from anonemail import create_parser, get_dest
+from anonemail import create_parser, get_dest, decode_hdr
 
 class TestAnonString(unittest.TestCase):
 
@@ -36,6 +36,17 @@ class TestAnonString(unittest.TestCase):
 		self.assertEqual(
 			clean_token("<NeedLove>\n"),
 			"NeedLove")
+
+	def test_decode_hdr(self):
+
+		self.assertListEqual(
+			decode_hdr(["=?iso-8859-1?q?p=F6stal?="]),
+			["pöstal"])
+
+		self.assertListEqual(
+			decode_hdr(["=?UTF-8?B?U1VI5bqD5aCx5a6j5Lyd6YOo44CA56eL5ZCJ?=\
+ <akiyoshi@shape-up-house.co.jp>", "suh@netforest.ad.jp"]),
+			["SUH広報宣伝部\u3000秋吉", "akiyoshi@shape-up-house.co.jp", "suh@netforest.ad.jp"])
 
 class TestAnonEmail(unittest.TestCase):
 
