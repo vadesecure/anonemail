@@ -20,7 +20,7 @@ SMPADDR = "sampling@email.tld"
 # Server to forward anonymized messages to
 SRVSMTP = "localhost"
 # Recipient Headers
-RCPTHDR = ( "To", "Cc", "Bcc", "Delivered-To" )
+RCPTHDR = ( "To", "Cc", "Bcc", "Delivered-To", "X-RCPT-To" )
 # Custom headers to anonymize ( List Id…)
 CSTMHDR = ( "X-Mailer-RecptId", )
 # Headers to decode before tokenizing ( RFC 2822 )
@@ -232,7 +232,7 @@ def ano_coddhdr(msg, coddhdr, elmts):
 
 	return anohdr
 
-def parse_args():
+def create_parser():
 	""" Define every options for argument parsing """
 	parser = argparse.ArgumentParser(description='')
 	group = parser.add_mutually_exclusive_group()
@@ -246,7 +246,7 @@ def parse_args():
 	parser.add_argument('--sample', dest='smpl_addr', help="Sampling address", default=SMPADDR)
 	parser.add_argument('--no-dkim', dest='no_dkim', help="Remove DKIM fields", action='store_true')
 	
-	return parser.parse_args()
+	return parser
 
 def get_newmsg(msg,elmts):
 	""" Build the new, anonymized messaged and encode it correctly """
@@ -294,7 +294,8 @@ def clean_hdr(msg, elmts):
 def main():
 	global args
 	
-	args = parse_args()
+	parser = create_parser()
+	args = parser.parse_args()
 	msg = email_open(args)
 
 	# Grab recipient from To field
