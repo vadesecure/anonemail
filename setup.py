@@ -50,4 +50,5 @@ To send the anonymized version of an eml file from bonnie@clyde.com to tips@poli
       install_requires=[
         "beautifulsoup4"
       ],
+	test_suite = "tests",
       )
