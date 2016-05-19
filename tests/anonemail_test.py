@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 # coding = utf8
 
-import unittest, email, argparse
+import unittest, email, argparse, sys, os.path
+sys.path.append(os.path.abspath('../python/'))
 from anonemail import replace, tokenize_to, clean_token, email_open
 from anonemail import create_parser, get_dest, decode_hdr
 
@@ -45,8 +46,8 @@ class TestAnonString(unittest.TestCase):
 
 		self.assertListEqual(
 			decode_hdr(["=?UTF-8?B?U1VI5bqD5aCx5a6j5Lyd6YOo44CA56eL5ZCJ?=\
- <akiyoshi@yolo.co.jp>", "suh@nyolo.jp"]),
-			["SUH広報宣伝部\u3000秋吉", "akiyoshi@yolo.jp", "suh@yolo.jp"])
+ <akiyoshi@yolo.co.jp>", "suh@yolo.jp"]),
+			["SUH広報宣伝部\u3000秋吉", "akiyoshi@yolo.co.jp", "suh@yolo.jp"])
 
 class TestAnonEmail(unittest.TestCase):
 
