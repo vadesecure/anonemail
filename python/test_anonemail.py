@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 # coding = utf8
 
-import unittest
-from anonemail import replace, tokenize_to, clean_token
+import unittest, email, argparse
+from anonemail import replace, tokenize_to, clean_token, email_open
+from anonemail import create_parser
 
-class TestAnonemail(unittest.TestCase):
+class TestAnonString(unittest.TestCase):
 
 	def test_replace(self):
 		self.assertEqual(
@@ -35,6 +36,15 @@ class TestAnonemail(unittest.TestCase):
 		self.assertEqual(
 			clean_token("<NeedLove>\n"),
 			"NeedLove")
+
+class TestAnonEmail(unittest.TestCase):
+
+	def setUp(self):
+		self.parser = create_parser()
+
+	def test_email_open(self):
+		args = self.parser.parse_args("-i ../corpus/koi8r.eml".split())
+		self.assertIsInstance(email_open(args),email.message.Message)
 
 
 if __name__ == '__main__':
