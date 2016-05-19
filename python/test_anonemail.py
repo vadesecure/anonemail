@@ -3,7 +3,7 @@
 
 import unittest, email, argparse
 from anonemail import replace, tokenize_to, clean_token, email_open
-from anonemail import create_parser
+from anonemail import create_parser, get_dest
 
 class TestAnonString(unittest.TestCase):
 
@@ -45,6 +45,13 @@ class TestAnonEmail(unittest.TestCase):
 	def test_email_open(self):
 		args = self.parser.parse_args("-i ../corpus/koi8r.eml".split())
 		self.assertIsInstance(email_open(args),email.message.Message)
+
+	def test_get_dest(self):
+		args = self.parser.parse_args("-i ../corpus/toinbody.eml".split())
+		msg = email_open(args)
+		self.assertListEqual(
+			["foo.bar@phonydomain.fr"],
+			get_dest(msg, ""))
 
 
 if __name__ == '__main__':
