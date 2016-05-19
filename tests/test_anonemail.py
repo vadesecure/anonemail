@@ -45,8 +45,8 @@ class TestAnonString(unittest.TestCase):
 
 		self.assertListEqual(
 			decode_hdr(["=?UTF-8?B?U1VI5bqD5aCx5a6j5Lyd6YOo44CA56eL5ZCJ?=\
- <akiyoshi@shape-up-house.co.jp>", "suh@netforest.ad.jp"]),
-			["SUH広報宣伝部\u3000秋吉", "akiyoshi@shape-up-house.co.jp", "suh@netforest.ad.jp"])
+ <akiyoshi@yolo.co.jp>", "suh@nyolo.jp"]),
+			["SUH広報宣伝部\u3000秋吉", "akiyoshi@yolo.jp", "suh@yolo.jp"])
 
 class TestAnonEmail(unittest.TestCase):
 
