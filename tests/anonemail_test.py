@@ -54,11 +54,11 @@ class TestAnonEmail(unittest.TestCase):
 		self.parser = create_parser()
 
 	def test_email_open(self):
-		args = self.parser.parse_args("-i ../corpus/koi8r.eml".split())
+		args = self.parser.parse_args("-i corpus/koi8r.eml".split())
 		self.assertIsInstance(email_open(args),email.message.Message)
 
 	def test_get_dest(self):
-		args = self.parser.parse_args("-i ../corpus/toinbody.eml".split())
+		args = self.parser.parse_args("-i corpus/toinbody.eml".split())
 		msg = email_open(args)
 		self.assertListEqual(
 			["foo.bar@phonydomain.fr"],
