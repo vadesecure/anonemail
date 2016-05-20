@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # coding = utf8
 
-import unittest, email, argparse, sys, glob 
+import unittest, email, argparse, sys, glob, random
 from python.anonemail import replace, tokenize_to, clean_token, email_open
 from python.anonemail import create_parser, get_dest, decode_hdr, url_replace
-from python.anonemail import anon_part
+from python.anonemail import anon_part, encode_part
 
 class TestAnonString(unittest.TestCase):
 
@@ -62,10 +62,10 @@ class TestAnonEmail(unittest.TestCase):
 
 		# randomEmail take a random eml file in corpus folder
 		emails = glob.glob("corpus/*.eml")
-		print(emails)
+		random_email = random.choice(emails)
 
 	def test_email_open(self):
-		args = self.parser.parse_args("-i corpus/koi8r.eml".split())
+		args = self.parser.parse_args(["-i", randomEmail])
 		self.assertIsInstance(email_open(args),email.message.Message)
 
 	def test_get_dest(self):
@@ -93,6 +93,14 @@ class TestAnonEmail(unittest.TestCase):
 				self.assertNotRegex(
 					url_replace(part.get_payload()),
 					"\=[^x]")
+
+	def test_encode_part(self):
+		args = self.parser.parse_args( ["-i", random_email] )
+		msg = email_open(args)
+		for part in msg.walk():
+			self.assertNotEqual(
+				encode_part(part, part.get_content_charset(), part.get("content-transfer-encoding"),
+				"!ERR!")
 
 if __name__ == '__main__':
 	unittest.main()
