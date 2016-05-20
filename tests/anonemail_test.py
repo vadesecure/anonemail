@@ -62,10 +62,10 @@ class TestAnonEmail(unittest.TestCase):
 
 		# randomEmail take a random eml file in corpus folder
 		emails = glob.glob("corpus/*.eml")
-		random_email = random.choice(emails)
+		self.random_email = random.choice(emails)
 
 	def test_email_open(self):
-		args = self.parser.parse_args(["-i", randomEmail])
+		args = self.parser.parse_args(["-i", self.random_email])
 		self.assertIsInstance(email_open(args),email.message.Message)
 
 	def test_get_dest(self):
@@ -95,12 +95,13 @@ class TestAnonEmail(unittest.TestCase):
 					"\=[^x]")
 
 	def test_encode_part(self):
-		args = self.parser.parse_args( ["-i", random_email] )
+		args = self.parser.parse_args( ["-i", self.random_email] )
 		msg = email_open(args)
 		for part in msg.walk():
-			self.assertNotEqual(
-				encode_part(part, part.get_content_charset(), part.get("content-transfer-encoding"),
-				"!ERR!")
+			if not part.is_multipart() and part.get_content_maintype() == 'text':
+				self.assertNotEqual(
+					encode_part(part, part.get_content_charset(), part.get("content-transfer-encoding")),
+					"!ERR!")
 
 if __name__ == '__main__':
 	unittest.main()
