@@ -81,6 +81,15 @@ class TestAnonEmail(unittest.TestCase):
 				self.assertNotRegex(part.as_string(), "green")
 				self.assertNotRegex(part.as_string(), "phonydomain")
 
+	def test_url_replace(self):
+		args = self.parser.parse_args("-i corpus/multipart.eml".split())
+		msg = email_open(args)
+		for part in msg.walk():
+			if not part.is_multipart() and part.get_content_maintype() == 'text':
+				self.assertNotRegex(
+					url_replace(part.get_payload()),
+					"\=[^x]")
+		
 
 if __name__ == '__main__':
 	unittest.main()
