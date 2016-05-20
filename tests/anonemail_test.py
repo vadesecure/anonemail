@@ -2,9 +2,8 @@
 # coding = utf8
 
 import unittest, email, argparse, sys, os.path
-sys.path.append(os.path.abspath('../python/'))
-from anonemail import replace, tokenize_to, clean_token, email_open
-from anonemail import create_parser, get_dest, decode_hdr
+from python.anonemail import replace, tokenize_to, clean_token, email_open
+from python.anonemail import create_parser, get_dest, decode_hdr
 
 class TestAnonString(unittest.TestCase):
 
