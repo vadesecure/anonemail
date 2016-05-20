@@ -271,7 +271,7 @@ def get_newmsg(msg,elmts):
 				break
 	return new_msg
 
-def clean_hdr(msg, elmts):
+def clean_hdr(msg, args, elmts):
 	""" Anonymize headers """
 	# Looking for custom header to clean
 	for cstmhdr in CSTMHDR:
@@ -317,7 +317,7 @@ def main():
 			part = part
 
 	# Clean headers
-	msg = clean_hdr(msg, elmts)
+	msg = clean_hdr(msg, args, lmts)
 
 	new_msg = get_newmsg(msg, elmts)
 

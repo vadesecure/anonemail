@@ -4,6 +4,7 @@
 import unittest, email, argparse, sys, os.path
 from python.anonemail import replace, tokenize_to, clean_token, email_open
 from python.anonemail import create_parser, get_dest, decode_hdr, url_replace
+from python.anonemail import anon_part
 
 class TestAnonString(unittest.TestCase):
 
@@ -69,6 +70,16 @@ class TestAnonEmail(unittest.TestCase):
 		self.assertListEqual(
 			["foo.bar@phonydomain.fr"],
 			get_dest(msg, ""))
+
+	def test_anon_part(self):
+		args = self.parser.parse_args("-i corpus/multipart.eml".split())
+		msg = email_open(args)
+		for part in msg.walk():
+			if not part.is_multipart() and part.get_content_maintype() == 'text':
+				part = anon_part(part, ("pamela","green","phonydomain.fr"))
+				self.assertNotRegex(part.get_payload(), "pamela")
+				self.assertNotRegex(part.as_string(), "green")
+				self.assertNotRegex(part.as_string(), "phonydomain")
 
 
 if __name__ == '__main__':
