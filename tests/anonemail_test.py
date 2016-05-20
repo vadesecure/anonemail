@@ -3,7 +3,7 @@
 
 import unittest, email, argparse, sys, os.path
 from python.anonemail import replace, tokenize_to, clean_token, email_open
-from python.anonemail import create_parser, get_dest, decode_hdr
+from python.anonemail import create_parser, get_dest, decode_hdr, url_replace
 
 class TestAnonString(unittest.TestCase):
 
@@ -47,6 +47,12 @@ class TestAnonString(unittest.TestCase):
 			decode_hdr(["=?UTF-8?B?U1VI5bqD5aCx5a6j5Lyd6YOo44CA56eL5ZCJ?=\
  <akiyoshi@yolo.co.jp>", "suh@yolo.jp"]),
 			["SUH広報宣伝部\u3000秋吉", "akiyoshi@yolo.co.jp", "suh@yolo.jp"])
+
+	def test_url_replace(self):
+ 
+                self.assertEqual(
+                        url_replace("Look what I found: https://encrypted.google.com/search?hl=fr&q=love%20your%20email !"),
+                        "Look what I found: https://encrypted.google.com/search?hl=xx&q=xxxx+xxxx+xxxxx !")
 
 class TestAnonEmail(unittest.TestCase):
 
