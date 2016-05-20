@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # coding = utf8
 
-import unittest, email, argparse, sys, os.path
+import unittest, email, argparse, sys, glob 
 from python.anonemail import replace, tokenize_to, clean_token, email_open
 from python.anonemail import create_parser, get_dest, decode_hdr, url_replace
 from python.anonemail import anon_part
@@ -60,6 +60,10 @@ class TestAnonEmail(unittest.TestCase):
 	def setUp(self):
 		self.parser = create_parser()
 
+		# randomEmail take a random eml file in corpus folder
+		emails = glob.glob("corpus/*.eml")
+		print(emails)
+
 	def test_email_open(self):
 		args = self.parser.parse_args("-i corpus/koi8r.eml".split())
 		self.assertIsInstance(email_open(args),email.message.Message)
@@ -89,7 +93,6 @@ class TestAnonEmail(unittest.TestCase):
 				self.assertNotRegex(
 					url_replace(part.get_payload()),
 					"\=[^x]")
-		
 
 if __name__ == '__main__':
 	unittest.main()
