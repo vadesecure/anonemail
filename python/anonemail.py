@@ -75,9 +75,9 @@ def tokenize_to(to):
 	# For every email address, extract element of interest (name, surname, domain…)
 	for email in emails:
 		fulluser, todom = email.split('@',1)
-		for i in USERSEP.split(fulluser, 4):
-			if len(i) > 2: 
-				tokens.add(i)
+		for user_part in USERSEP.split(fulluser, 4):
+			if len(user_part) > 2: 
+				tokens.add(user_part)
 		tokens.add(todom)
 		
 	return tokens
