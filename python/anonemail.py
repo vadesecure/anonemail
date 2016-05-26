@@ -238,7 +238,7 @@ def ano_coddhdr(msg, coddhdr, elmts):
 		
 		if charset != None:
 			dcd_hdr = b.decode(charset)
-			(dcd_hdr, count) = replace(dcd_hdr, elmts)
+			dcd_hdr, count = replace(dcd_hdr, elmts)
 			anohdr.append((dcd_hdr , charset))
 		elif isinstance(b,str):
 			anohdr.append((b, charset))
