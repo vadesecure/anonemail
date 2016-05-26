@@ -64,17 +64,17 @@ def tokenize_to(to):
 	tokens = set()
 	
 	# Get both aliases and email addresses
-	temp  = TKENSEP.split(to.lower())
-	for t in temp:
-		t = clean_token(t)
-		if '@' in t:
-			emails.add(t)
-		elif len(t) != 0:
-			tokens.add(t)
+	fields  = TKENSEP.split(to.lower())
+	for token in fields:
+		token = clean_token(token)
+		if '@' in token:
+			emails.add(token)
+		elif len(token) != 0:
+			tokens.add(token)
 			
 	# For every email address, extract element of interest (name, surname, domain…)
-	for e in emails:
-		fulluser, todom = e.split('@',1)
+	for email in emails:
+		fulluser, todom = email.split('@',1)
 		for i in USERSEP.split(fulluser, 4):
 			if len(i) > 2: 
 				tokens.add(i)
