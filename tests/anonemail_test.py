@@ -29,7 +29,7 @@ class TestAnonString(unittest.TestCase):
 		result = set(["wolfgang","amadeus","mozart","wamoz1756","wien.austria.at"])
 		
 		self.assertSetEqual(
-			tokenize_to("Wolfgang Amadeus Mozart <wamoz1756@wien.austria.at"),
+			tokenize_to("Wolfgang Amadeus Mozart <wamoz1756@wien.austria.at>"),
 				result)
 
 
