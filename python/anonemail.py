@@ -49,7 +49,7 @@ def replace(text, elmts):
 	count = 0
 	for elmt in elmts:
 		ins_elmt = re.compile(re.escape(elmt), re.IGNORECASE)
-		(text, c) = ins_elmt.subn(ano_x(elmt), text)
+		text, c = ins_elmt.subn(ano_x(elmt), text)
 		count = count + c
 	return text, count
 
