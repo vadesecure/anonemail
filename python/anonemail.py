@@ -35,11 +35,11 @@ SMPADDR = "sampling@email.tld"
 # Server to forward anonymized messages to
 SRVSMTP = "localhost"
 # Recipient Headers
-RCPTHDR = ( "To", "Cc", "Bcc", "Delivered-To", "X-RCPT-To" )
-# Custom headers to anonymize ( List Id…)
-CSTMHDR = ( "X-Mailer-RecptId", )
-# Headers to decode before tokenizing ( RFC 2822 )
-CODDHDR = ( "To", "Cc", "Subject" ) 
+RCPTHDR = ("To", "Cc", "Bcc", "Delivered-To", "X-RCPT-To")
+# Custom headers to anonymize (List Id…)
+CSTMHDR = ("X-Mailer-RecptId",)
+# Headers to decode before tokenizing (RFC 2822)
+CODDHDR = ("To", "Cc", "Subject") 
 
 addr_rgx = re.compile("for ([^;]+);") # to clean received headers
 url_rgx = re.compile("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
@@ -49,7 +49,7 @@ def replace(text, elmts):
 	count = 0
 	for elmt in elmts:
 		ins_elmt = re.compile(re.escape(elmt), re.IGNORECASE)
-		(text, c) = ins_elmt.subn( ano_x(elmt), text)
+		(text, c) = ins_elmt.subn(ano_x(elmt), text)
 		count = count + c
 	return text, count
 
@@ -170,8 +170,8 @@ def url_ano_params(o):
 	""" Replace every parameter in URLs """
 	new_query = []
 	for qs in urllib.parse.parse_qsl(o.query):
-		new_query.append( ( qs[0], ano_x(qs[1]) ) )
-		new_url = urllib.parse.urlunparse( (o[0], o[1], o[2], o[3], urllib.parse.urlencode(new_query), o[5]) )
+		new_query.append((qs[0], ano_x(qs[1])))
+		new_url = urllib.parse.urlunparse((o[0], o[1], o[2], o[3], urllib.parse.urlencode(new_query), o[5]))
 		
 	return new_url
 	
@@ -224,7 +224,7 @@ def anon_part(part, elmts):
 		new_load = url_replace_html(new_load)
 	
 	# Encoding back in the previously used encoding (if any)
-	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding') )
+	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding'))
 	if cdc_load == "!ERR!":
 		error(msg, "Encoding error")
 	else:
@@ -239,11 +239,11 @@ def ano_coddhdr(msg, coddhdr, elmts):
 		if charset != None:
 			dcd_hdr = b.decode(charset)
 			(dcd_hdr, count) = replace(dcd_hdr, elmts)
-			anohdr.append( (dcd_hdr , charset) )
+			anohdr.append((dcd_hdr , charset))
 		elif isinstance(b,str):
-			anohdr.append( (b, charset) )
+			anohdr.append((b, charset))
 		else:
-			anohdr.append( (b.decode(), charset) )
+			anohdr.append((b.decode(), charset))
 
 	return anohdr
 
@@ -291,13 +291,13 @@ def clean_hdr(msg, args, elmts):
 	# Looking for custom header to clean
 	for cstmhdr in CSTMHDR:
 		if cstmhdr in msg.keys():
-			msg.replace_header(cstmhdr, ano_x( msg.get(cstmhdr)) )
+			msg.replace_header(cstmhdr, ano_x(msg.get(cstmhdr)))
 
 	# Anonmyzation of encoded headers
 	for coddhdr in CODDHDR:
 		if coddhdr in msg.keys():
 			anohdr = ano_coddhdr(msg, coddhdr, elmts)
-			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
+			msg.replace_header(coddhdr, email.header.make_header(anohdr))
 
 	# If defined, clean DKIM fields
 	if args.no_dkim:
@@ -322,7 +322,7 @@ def main():
 	elmts = set()
 	for d in dest:
 		elmts.update(tokenize_to(d))
-	elmts = sorted( elmts, key=str.__len__, reverse = True )
+	elmts = sorted(elmts, key=str.__len__, reverse = True)
 	
 	# Main part - loop on every part of the email
 	for part in msg.walk():
