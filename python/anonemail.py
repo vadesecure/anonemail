@@ -159,19 +159,19 @@ def url_replace(text):
 	
 	urlz = url_rgx.finditer(text)
 	for url in urlz:
-		o = urllib.parse.urlparse(url.group(0))
-		if o.query is not "":
-			new_url = url_ano_params(o)
+		url_object = urllib.parse.urlparse(url.group(0))
+		if url_object.query is not "":
+			new_url = url_ano_params(url_object)
 			text = text[:url.start()] + new_url + text[url.end():]
 	
 	return text
 	
-def url_ano_params(o):
+def url_ano_params(url):
 	""" Replace every parameter in URLs """
 	new_query = []
-	for qs in urllib.parse.parse_qsl(o.query):
-		new_query.append((qs[0], ano_x(qs[1])))
-		new_url = urllib.parse.urlunparse((o[0], o[1], o[2], o[3], urllib.parse.urlencode(new_query), o[5]))
+	for query in urllib.parse.parse_qsl(url.query):
+		new_query.append((query[0], ano_x(query[1])))
+		new_url = urllib.parse.urlunparse((url[0], url[1], url[2], url[3], urllib.parse.urlencode(new_query), url[5]))
 		
 	return new_url
 	
