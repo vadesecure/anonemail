@@ -21,6 +21,7 @@ import argparse,sys,base64, quopri, random
 from bs4 import BeautifulSoup
 from email.parser import BytesFeedParser
 from email.header import decode_header,Header
+from mailoutstream import FileMailOutStream, SMTPMailOutStream
 
 # Separators for getting user "parts" as in name.surname@email.tld or name_surname@email.tld
 USERSEP = re.compile("[._-]")
@@ -86,15 +87,14 @@ def clean_token(t):
 	""" Clean token from unwanted character """
 	return t.strip('<>" \n\t')
 	
-def error(msg, error_msg):
+def error(msg, error_msg, out_streams):
 	""" Forward message to the error handling email address """
 	if msg.get('Subject') is not None:
 		subj = "[ " + error_msg + " ] " + msg.get("Subject")
 		msg.replace_header("Subject", subj)
 
-	s = smtplib.SMTP(args.srvsmtp)
-	s.send_message(msg,args.from_addr,args.err_addr)
-	s.quit()
+	for stream in out_streams:
+		stream.send_error(msg)
 	exit(1)
 
 def get_dest(msg, orig_to):
@@ -109,7 +109,7 @@ def get_dest(msg, orig_to):
 				dcd_hdr = decode_hdr(msg.get_all(hdr))
 				dest.extend(dcd_hdr)
 			else:
-				dest.extend(msg.getall(hdr))
+				dest.extend(msg.get_all(hdr))
 	
 
 	# If no To nor Cc, we look for recipient into the received
@@ -201,7 +201,7 @@ def email_open(args):
 
 	# Check for invalid (0 bytes) message
 	if len(msg) == 0:
-		error(msg, "Invalid Message")
+		error(msg, "Invalid Message", out_streams)
 	else:
 		return msg
 
@@ -226,7 +226,7 @@ def anon_part(part, elmts):
 	# Encoding back in the previously used encoding (if any)
 	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding'))
 	if cdc_load == "!ERR!":
-		error(msg, "Encoding error")
+		error(msg, "Encoding error", out_streams)
 	else:
 		part.set_payload(cdc_load)
 	return part
@@ -260,15 +260,34 @@ def create_parser():
 	parser.add_argument('--err', dest='err_addr', help="Error handling address", default=ERRADDR)
 	parser.add_argument('--sample', dest='smpl_addr', help="Sampling address", default=SMPADDR)
 	parser.add_argument('--no-dkim', dest='no_dkim', help="Remove DKIM fields", action='store_true')
-	
+	parser.add_argument('-s', '--anonymise-sender', dest="is_sender_anon", action="store_true", default=False)
+	parser.add_argument('--no-mail', dest="send_mail", action="store_false", default=True,help="Tels the program not to send anonymized mail to smtp server")
+	parser.add_argument('--to-file', dest="to_file", default=False, action="store_true",
+				help="Send a copy of anonymized mail to a file must be used with at least --dest-dir and --error-dir")
+	parser.add_argument('--dest-dir', dest="dest_dir", default=None)
+	parser.add_argument('--error-dir', dest="error_dir", default=None)
+
+
 	return parser
+
+def get_streams(args):
+	out_streams = []
+	if args.send_mail:
+		out_streams.append(SMTPMailOutStream(args.from_addr, args.to_addr, args.err_addr, args.smpl_addr,SRVSMTP, True))
+	if args.to_file:
+        	out_streams.append(FileMailOutStream(args.dest_dir, args.error_dir, args.sample_dir, args.sample_dir is not None))
+	if len(out_streams) == 0:
+		print("You can't use --no-mail without --to-file")
+		exit()
+
+	return out_streams
 
 def get_newmsg(msg,elmts):
 	""" Build the new, anonymized messaged and encode it correctly """
 	# Concatenate the anonymized headers with anonymized body = BOUM ! anonymized email !
 	hdr_end = msg.as_string().find('\n\n')
 	if hdr_end == -1:
-		error(msg, "No neck")
+		error(msg, "No neck", out_streams)
 	else:
 		hdr = msg.as_string()[:hdr_end]
 		new_hdr = url_replace(hdr)
@@ -307,16 +326,17 @@ def clean_hdr(msg, args, elmts):
 	return msg
 
 def main():
-	global args
+	global args, out_streams
 	
 	parser = create_parser()
 	args = parser.parse_args()
+	out_streams = get_streams(args)
 	msg = email_open(args)
 
 	# Grab recipient from To field
 	dest = get_dest(msg, args.orig_to)
 	if len(dest) == 0:
-		error(msg, "No explicit To")
+		error(msg, "No explicit To", out_streams)
 	
 	# Get tokens from recipient
 	elmts = set()
@@ -332,7 +352,7 @@ def main():
 			part = part
 
 	# Clean headers
-	msg = clean_hdr(msg, args, lmts)
+	msg = clean_hdr(msg, args, elmts)
 
 	new_msg = get_newmsg(msg, elmts)
 
@@ -340,10 +360,12 @@ def main():
 	
 	# Sampling part 
 	if random.randint(0,10) == 0:
-		s.sendmail(args.from_addr,args.smpl_addr,new_msg)
+		for stream in out_streams:
+			stream.send_sample(new_msg)
 
 	# Send final message 
-	s.sendmail(args.from_addr,args.to_addr,new_msg)
+	for stream in out_streams:
+			stream.send_success(new_msg)
 
 	s.quit()
 	exit(0)

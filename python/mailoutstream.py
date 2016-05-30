@@ -82,7 +82,7 @@ class SMTPMailOutStream(MailOutStream):
     def __send_message(self, dest, message_str):
         server = SMTP(self.smtp_srv)
         server.sendmail(self.from_addr, dest, message_str)
-        s.quit()
+        server.quit()
     
     def __init__(self, from_addr, to_addr, error_addr, smpl_addr, smtp_srv, is_sampled=False, logger=None):
         super().__init__(is_sampled, logger)
@@ -94,14 +94,14 @@ class SMTPMailOutStream(MailOutStream):
     
     def send_success(self, message):
         self.__send_message(self.to_addr, message)
-        super().send_success()
+        super().send_success(message)
     
     def send_error(self, message):
         self.__send_message(self.error_addr, message)
-        super().send_error()
+        super().send_error(message)
     
     def send_sample(self, message):
         if not self.is_sampled:
             return
         self.__send_message(self.smpl_addr, message)
-        super().send_sample()
+        super().send_sample(message)
