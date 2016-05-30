@@ -14,7 +14,7 @@ class TestAnonString(unittest.TestCase):
 				 ("xxx xxx", 2) )
 
 	def test_tokenize(self):
-		result = set(["anonemail","project","vade-retro.com"])
+		result = set(["anonemail", "project", "vade-retro.com"])
 		
 		self.assertSetEqual(
 			tokenize_to("anonemail.project@vade-retro.com"),
@@ -29,7 +29,7 @@ class TestAnonString(unittest.TestCase):
 		result = set(["wolfgang","amadeus","mozart","wamoz1756","wien.austria.at"])
 		
 		self.assertSetEqual(
-			tokenize_to("Wolfgang Amadeus Mozart <wamoz1756@wien.austria.at"),
+			tokenize_to("Wolfgang Amadeus Mozart <wamoz1756@wien.austria.at>"),
 				result)
 
 
@@ -78,12 +78,12 @@ class TestAnonEmail(unittest.TestCase):
 	def test_anon_part(self):
 		args = self.parser.parse_args("-i corpus/multipart.eml".split())
 		msg = email_open(args)
-		for part in msg.walk():
+		for i, part in enum(msg.walk()):
 			if not part.is_multipart() and part.get_content_maintype() == 'text':
-				part = anon_part(part, ("pamela","green","phonydomain.fr"))
-				self.assertNotRegex(part.get_payload(), "pamela")
-				self.assertNotRegex(part.as_string(), "green")
-				self.assertNotRegex(part.as_string(), "phonydomain")
+				_part = anon_part(part, ("pamela","green","phonydomain.fr"))
+				self.assertNotRegex(_part.get_payload(), "pamela", "userpart element missing in {}th part".format(i + 1))
+				self.assertNotRegex(_part.as_string(), "green", "userpart element missing in {}th part".format(i + 1))
+				self.assertNotRegex(_part.as_string(), "phonydomain", "userpart element missing in {}th part".format(i + 1))
 
 	def test_url_replace(self):
 		args = self.parser.parse_args("-i corpus/multipart.eml".split())

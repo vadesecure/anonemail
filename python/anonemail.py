@@ -1,6 +1,21 @@
 #!/usr/bin/python3
-# coding = utf8
  
+"""
+Copyright (c) 2015 "Vade Retro Technology"
+anonemail is an email anonymization script
+This file is part of anonemail.
+anonemail is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import email,smtplib,re, urllib, io
 import argparse,sys,base64, quopri, random
 from bs4 import BeautifulSoup
@@ -20,11 +35,11 @@ SMPADDR = "sampling@email.tld"
 # Server to forward anonymized messages to
 SRVSMTP = "localhost"
 # Recipient Headers
-RCPTHDR = ( "To", "Cc", "Bcc", "Delivered-To", "X-RCPT-To" )
-# Custom headers to anonymize ( List Id…)
-CSTMHDR = ( "X-Mailer-RecptId", )
-# Headers to decode before tokenizing ( RFC 2822 )
-CODDHDR = ( "To", "Cc", "Subject" ) 
+RCPTHDR = ("To", "Cc", "Bcc", "Delivered-To", "X-RCPT-To")
+# Custom headers to anonymize (List Id…)
+CSTMHDR = ("X-Mailer-RecptId",)
+# Headers to decode before tokenizing (RFC 2822)
+CODDHDR = ("To", "Cc", "Subject") 
 
 addr_rgx = re.compile("for ([^;]+);") # to clean received headers
 url_rgx = re.compile("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
@@ -34,7 +49,7 @@ def replace(text, elmts):
 	count = 0
 	for elmt in elmts:
 		ins_elmt = re.compile(re.escape(elmt), re.IGNORECASE)
-		(text, c) = ins_elmt.subn( ano_x(elmt), text)
+		text, c = ins_elmt.subn(ano_x(elmt), text)
 		count = count + c
 	return text, count
 
@@ -49,20 +64,20 @@ def tokenize_to(to):
 	tokens = set()
 	
 	# Get both aliases and email addresses
-	temp  = TKENSEP.split(to.lower())
-	for t in temp:
-		t = clean_token(t)
-		if '@' in t:
-			emails.add(t)
-		elif len(t) != 0:
-			tokens.add(t)
+	fields  = TKENSEP.split(to.lower())
+	for token in fields:
+		token = clean_token(token)
+		if '@' in token:
+			emails.add(token)
+		elif len(token) != 0:
+			tokens.add(token)
 			
 	# For every email address, extract element of interest (name, surname, domain…)
-	for e in emails:
-		(fulluser, todom) = e.split('@')
-		for i in USERSEP.split(fulluser, 4):
-			if len(i) > 2: 
-				tokens.add(i)
+	for email in emails:
+		fulluser, todom = email.split('@',1)
+		for user_part in USERSEP.split(fulluser, 4):
+			if len(user_part) > 2: 
+				tokens.add(user_part)
 		tokens.add(todom)
 		
 	return tokens
@@ -144,19 +159,19 @@ def url_replace(text):
 	
 	urlz = url_rgx.finditer(text)
 	for url in urlz:
-		o = urllib.parse.urlparse(url.group(0))
-		if o.query is not "":
-			new_url = url_ano_params(o)
+		url_object = urllib.parse.urlparse(url.group(0))
+		if url_object.query is not "":
+			new_url = url_ano_params(url_object)
 			text = text[:url.start()] + new_url + text[url.end():]
 	
 	return text
 	
-def url_ano_params(o):
+def url_ano_params(url):
 	""" Replace every parameter in URLs """
 	new_query = []
-	for qs in urllib.parse.parse_qsl(o.query):
-		new_query.append( ( qs[0], ano_x(qs[1]) ) )
-		new_url = urllib.parse.urlunparse( (o[0], o[1], o[2], o[3], urllib.parse.urlencode(new_query), o[5]) )
+	for query in urllib.parse.parse_qsl(url.query):
+		new_query.append((query[0], ano_x(query[1])))
+		new_url = urllib.parse.urlunparse((url[0], url[1], url[2], url[3], urllib.parse.urlencode(new_query), url[5]))
 		
 	return new_url
 	
@@ -209,7 +224,7 @@ def anon_part(part, elmts):
 		new_load = url_replace_html(new_load)
 	
 	# Encoding back in the previously used encoding (if any)
-	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding') )
+	cdc_load = encode_part(new_load, charset, part.get('content-transfer-encoding'))
 	if cdc_load == "!ERR!":
 		error(msg, "Encoding error")
 	else:
@@ -223,12 +238,12 @@ def ano_coddhdr(msg, coddhdr, elmts):
 		
 		if charset != None:
 			dcd_hdr = b.decode(charset)
-			(dcd_hdr, count) = replace(dcd_hdr, elmts)
-			anohdr.append( (dcd_hdr , charset) )
+			dcd_hdr, count = replace(dcd_hdr, elmts)
+			anohdr.append((dcd_hdr , charset))
 		elif isinstance(b,str):
-			anohdr.append( (b, charset) )
+			anohdr.append((b, charset))
 		else:
-			anohdr.append( (b.decode(), charset) )
+			anohdr.append((b.decode(), charset))
 
 	return anohdr
 
@@ -276,13 +291,13 @@ def clean_hdr(msg, args, elmts):
 	# Looking for custom header to clean
 	for cstmhdr in CSTMHDR:
 		if cstmhdr in msg.keys():
-			msg.replace_header(cstmhdr, ano_x( msg.get(cstmhdr)) )
+			msg.replace_header(cstmhdr, ano_x(msg.get(cstmhdr)))
 
 	# Anonmyzation of encoded headers
 	for coddhdr in CODDHDR:
 		if coddhdr in msg.keys():
 			anohdr = ano_coddhdr(msg, coddhdr, elmts)
-			msg.replace_header( coddhdr, email.header.make_header(anohdr) )
+			msg.replace_header(coddhdr, email.header.make_header(anohdr))
 
 	# If defined, clean DKIM fields
 	if args.no_dkim:
@@ -307,7 +322,7 @@ def main():
 	elmts = set()
 	for d in dest:
 		elmts.update(tokenize_to(d))
-	elmts = sorted( elmts, key=str.__len__, reverse = True )
+	elmts = sorted(elmts, key=str.__len__, reverse = True)
 	
 	# Main part - loop on every part of the email
 	for part in msg.walk():
