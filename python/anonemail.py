@@ -21,7 +21,10 @@ import argparse,sys,base64, quopri, random
 from bs4 import BeautifulSoup
 from email.parser import BytesFeedParser
 from email.header import decode_header,Header
-from mailoutstream import FileMailOutStream, SMTPMailOutStream
+try:
+    from mailoutstream import FileMailOutStream, SMTPMailOutStream
+except ImportError:
+    from python.mailoutstream import FileMailOutStream, SMTPMailOutStream
 
 # Separators for getting user "parts" as in name.surname@email.tld or name_surname@email.tld
 USERSEP = re.compile("[._-]")
