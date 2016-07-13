@@ -1,7 +1,7 @@
 #!/usr/bin/python3
  
 """
-Copyright (c) 2015 "Vade Retro Technology"
+Copyright (c) 2015 "Vade Secure"
 anonemail is an email anonymization script
 This file is part of anonemail.
 anonemail is free software: you can redistribute it and/or modify
