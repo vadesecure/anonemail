@@ -1,4 +1,4 @@
-Copyright (c) 2016 Vade Retro Technology
+Copyright (c) 2016 VadeSecure
 
 Python tool to remove personal information from body and headers of an email message (anonymization)
 
