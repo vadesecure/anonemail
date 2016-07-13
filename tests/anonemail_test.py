@@ -14,11 +14,10 @@ class TestAnonString(unittest.TestCase):
 				 ("xxx xxx", 2) )
 
 	def test_tokenize(self):
-		result = set(["anonemail", "project", "vade-retro.com"])
+		result = set(["anonemail", "project", "vadesecure.com"])
 		
 		self.assertSetEqual(
-			tokenize_to("anonemail.project@vade-retro.com"),
-				result)
+			tokenize_to("anonemail.project@vadesecure.com"), result)
 
 		result = set(["robot","usa-network.com"])
 
