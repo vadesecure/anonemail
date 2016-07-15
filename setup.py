@@ -3,8 +3,8 @@ from setuptools import setup
 setup(name='AnonEmail', # nom du projet
       version='1.0',  # version du projet
       description='Tool to remove personal information from body and headers of an email message (anonymization)', # description du projet en une ligne
-      author='Vade Retro Technology',
-      author_email="support@vade-retro.com",
+      author='Vade Secure',
+      author_email="support@vadesecure.com",
       url='https://github.com/VadeRetro/tools/tree/master/anonemail',  # url du github
       keywords=["email", "anonymization", "honeypot"], # mettre la liste des keywords associés
       classifiers = [
