@@ -215,7 +215,10 @@ def anon_part(part, elmts):
 	# If there is a charset, we decode the content
 	if charset is None:
 		payload = part.get_payload()
-		new_load = replace(payload, elmts)[0]
+		if isinstance(payload, str):
+			new_load = replace(payload, elmts)[0]
+		elif "To" in payload or "CC" in payload or "BCC" in payload:
+			new_load = anon_part(payload, elmts)
 	else:
 		payload = part.get_payload(decode=True).decode(charset)
 		new_load = replace(payload, elmts)[0]
@@ -256,7 +259,7 @@ def create_parser():
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-', help="Read from standard input", dest='stdin', action='store_true')
 	group.add_argument('-i','--infile', help="Read from a file (eml/plain text format)", nargs='?')
-	parser.add_argument('--server', dest='srvsmtp', help="SMTP server to use", default=SRVSMTP)
+	parser.add_argument('--server', dest='server', help="SMTP server to use", default=SRVSMTP)
 	parser.add_argument('--from', dest='from_addr', help="Sender address", default=FROMADDR)
 	parser.add_argument('--to', dest='to_addr', help="Recipient address", default=FWDADDR)
 	parser.add_argument('--orig-to', dest='orig_to', help="To used in SMTP transaction", nargs='*', default=None)
@@ -277,7 +280,7 @@ def create_parser():
 def get_streams(args):
 	out_streams = []
 	if args.send_mail:
-		out_streams.append(SMTPMailOutStream(args.from_addr, args.to_addr, args.err_addr, args.smpl_addr,SRVSMTP, True))
+		out_streams.append(SMTPMailOutStream(args.from_addr, args.to_addr, args.err_addr, args.smpl_addr, args.server, True))
 	if args.to_file:
         	out_streams.append(FileMailOutStream(args.dest_dir, args.error_dir, args.sample_dir, args.sample_dir is not None))
 	if len(out_streams) == 0:
