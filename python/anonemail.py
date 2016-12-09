@@ -1,7 +1,7 @@
 #!/usr/bin/python3
  
 """
-Copyright (c) 2015 "Vade Secure"
+Copyright (c) 2015-2016 "Vade Secure"
 anonemail is an email anonymization script
 This file is part of anonemail.
 anonemail is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import email,smtplib,re, urllib, io
+import email, re, urllib, io
 import argparse,sys,base64, quopri, random
 from bs4 import BeautifulSoup
 from email.parser import BytesFeedParser
@@ -264,11 +264,12 @@ def create_parser():
 	parser.add_argument('--sample', dest='smpl_addr', help="Sampling address", default=SMPADDR)
 	parser.add_argument('--no-dkim', dest='no_dkim', help="Remove DKIM fields", action='store_true')
 	parser.add_argument('-s', '--anonymise-sender', dest="is_sender_anon", action="store_true", default=False)
-	parser.add_argument('--no-mail', dest="send_mail", action="store_false", default=True,help="Tels the program not to send anonymized mail to smtp server")
+	parser.add_argument('--no-mail', dest="send_mail", action="store_false", default=True, help="Tels the program not to send anonymized mail to smtp server")
 	parser.add_argument('--to-file', dest="to_file", default=False, action="store_true",
 				help="Send a copy of anonymized mail to a file must be used with at least --dest-dir and --error-dir")
-	parser.add_argument('--dest-dir', dest="dest_dir", default=None)
-	parser.add_argument('--error-dir', dest="error_dir", default=None)
+	parser.add_argument('--dest-dir', dest="dest_dir", default=None, help="directory path where your anonimized emails will be dumped")
+	parser.add_argument('--sample-dir', dest="sample_dir", default=None, help="directory path to use when you want to drop only a sample of your anonymized feed.")
+	parser.add_argument('--error-dir', dest="error_dir", default=None, help="directory where errors are dumped.")
 
 
 	return parser
@@ -358,8 +359,6 @@ def main():
 	msg = clean_hdr(msg, args, elmts)
 
 	new_msg = get_newmsg(msg, elmts)
-
-	s = smtplib.SMTP(args.srvsmtp)
 	
 	# Sampling part 
 	if random.randint(0,10) == 0:
@@ -370,7 +369,6 @@ def main():
 	for stream in out_streams:
 			stream.send_success(new_msg)
 
-	s.quit()
 	exit(0)
 
 
